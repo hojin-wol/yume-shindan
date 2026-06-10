@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>あなたの夢タイプ診断｜ほーじんのビジョンボード</title>
+<meta property="og:title" content="あなたの夢タイプ診断｜ほーじんのビジョンボード">
+<meta property="og:description" content="3分でわかる！あなたの夢タイプと夢への最短ルート。歌うカウンセラー・ほーじんがお届けする無料診断。">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Shippori+Mincho:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dark: #8B6914;
+    --bg: #0a0a0a;
+    --bg2: #141008;
+    --text: #f0e6cc;
+    --muted: #8B7355;
+    --card: rgba(255,255,255,0.05);
+    --border: rgba(201,168,76,0.2);
+    --line-green: #06C755;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body { background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 60%, var(--bg) 100%); font-family: 'Noto Sans JP', sans-serif; color: var(--text); min-height: 100vh; overflow-x: hidden; }
+  .wrap { max-width: 480px; margin: 0 auto; padding: 0 20px 60px; }
+  .topbar { padding: 20px 20px 0; display: flex; justify-content: space-between; align-items: center; max-width: 480px; margin: 0 auto; }
+  .topbar-label { font-size: 10px; letter-spacing: 3px; color: var(--gold); }
+  .page { display: none; animation: fadeUp 0.35s ease; }
+  .page.active { display: block; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  .cover { text-align: center; padding-top: 40px; }
+  .cover-icon { font-size: 72px; display: block; margin-bottom: 16px; filter: drop-shadow(0 0 24px rgba(201,168,76,0.6)); animation: pulse 3s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { transform: scale(1); filter: drop-shadow(0 0 24px rgba(201,168,76,0.6)); } 50% { transform: scale(1.05); filter: drop-shadow(0 0 36px rgba(201,168,76,0.9)); } }
+  .badge { display: inline-block; font-size: 10px; letter-spacing: 4px; color: var(--gold); margin-bottom: 14px; padding: 4px 12px; border: 1px solid var(--border); border-radius: 20px; }
+  h1 { font-family: 'Shippori Mincho', serif; font-size: 28px; line-height: 1.5; margin-bottom: 10px; background: linear-gradient(135deg, var(--gold), #f0e6cc, var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .sub { font-size: 13px; color: var(--muted); line-height: 1.8; margin-bottom: 32px; }
+  .checklist { background: rgba(201,168,76,0.08); border: 1px solid var(--border); border-radius: 14px; padding: 18px; margin-bottom: 32px; text-align: left; }
+  .check-item { display: flex; align-items: center; gap: 10px; padding: 7px 0; font-size: 13px; border-bottom: 1px solid rgba(201,168,76,0.1); }
+  .check-item:last-child { border-bottom: none; }
+  .check-icon { color: var(--gold); font-size: 14px; flex-shrink: 0; }
+  .btn-gold { width: 100%; padding: 17px; border-radius: 14px; border: none; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: #0a0a0a; font-size: 15px; font-weight: 900; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; letter-spacing: 1px; box-shadow: 0 6px 24px rgba(201,168,76,0.35); transition: all 0.2s; text-decoration: none; display: block; text-align: center; }
+  .btn-gold:active { transform: scale(0.98); opacity: 0.9; }
+  .btn-line { width: 100%; padding: 17px; border-radius: 14px; border: none; background: linear-gradient(135deg, var(--line-green), #05A647); color: #fff; font-size: 15px; font-weight: 900; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; letter-spacing: 1px; box-shadow: 0 6px 24px rgba(6,199,85,0.35); transition: all 0.2s; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .btn-line:active { transform: scale(0.98); opacity: 0.9; }
+  .btn-ghost { width: 100%; padding: 14px; border-radius: 14px; border: 1px solid #333; background: transparent; color: #555; font-size: 13px; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; margin-top: 10px; }
+  .btn-note { font-size: 11px; color: #444; margin-top: 12px; text-align: center; }
+  .intro { padding-top: 32px; }
+  .section-label { font-size: 10px; letter-spacing: 3px; color: var(--gold); margin-bottom: 16px; }
+  h2 { font-size: 20px; font-weight: 900; line-height: 1.6; margin-bottom: 20px; }
+  .pain-card { background: var(--card); border: 1px solid #2a2a2a; border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; font-size: 13px; color: #999; line-height: 1.7; }
+  .insight-box { background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.08)); border: 1px solid var(--gold); border-radius: 16px; padding: 20px; margin: 24px 0 32px; font-size: 14px; line-height: 1.9; }
+  .gold-text { color: var(--gold); font-weight: 700; }
+  .quiz { padding-top: 24px; }
+  .progress-bar { height: 4px; background: #1e1e1e; border-radius: 2px; margin-bottom: 28px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-light)); border-radius: 2px; transition: width 0.4s ease; }
+  .q-label { font-size: 10px; letter-spacing: 3px; color: var(--gold); margin-bottom: 8px; }
+  .q-text { font-size: 18px; font-weight: 900; line-height: 1.6; margin-bottom: 24px; }
+  .options { display: flex; flex-direction: column; gap: 10px; }
+  .opt-btn { display: flex; align-items: center; gap: 14px; padding: 16px; border-radius: 14px; border: 1px solid #2a2a2a; background: rgba(255,255,255,0.03); color: var(--text); font-size: 14px; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; text-align: left; width: 100%; transition: all 0.15s; }
+  .opt-btn:active { border-color: rgba(201,168,76,0.5); background: rgba(201,168,76,0.08); transform: scale(0.98); }
+  .opt-emoji { font-size: 26px; flex-shrink: 0; }
+  .result { padding-top: 32px; }
+  .result-center { text-align: center; margin-bottom: 28px; }
+  .result-icon { font-size: 72px; display: block; margin-bottom: 12px; }
+  .result-type { font-size: 26px; font-weight: 900; margin-bottom: 4px; }
+  .result-sub { font-size: 12px; color: #555; }
+  .result-desc { border-radius: 16px; padding: 20px; margin-bottom: 16px; font-size: 14px; line-height: 1.9; }
+  .prescription { background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.08)); border: 1px solid var(--gold); border-radius: 16px; padding: 18px; margin-bottom: 20px; font-size: 13px; line-height: 1.8; }
+  .rx-label { font-size: 10px; letter-spacing: 2px; color: var(--gold); margin-bottom: 8px; }
+  .hojin-msg { background: rgba(255,255,255,0.03); border: 1px solid #2a2a2a; border-radius: 16px; padding: 18px; margin-bottom: 16px; font-size: 13px; line-height: 1.9; }
+  .hojin-msg-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #2a2a2a; }
+  .hojin-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold-light)); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+  .hojin-name { font-size: 13px; font-weight: 700; color: var(--gold); }
+  .hojin-role { font-size: 10px; color: #777; margin-top: 2px; }
+  .wol-msg { background: linear-gradient(135deg, rgba(180,140,200,0.08), rgba(140,180,220,0.05)); border: 1px dashed rgba(201,168,76,0.4); border-radius: 16px; padding: 16px; margin-bottom: 28px; font-size: 13px; line-height: 1.8; text-align: center; color: #c8b88a; font-style: italic; }
+  .wol-label { font-size: 10px; letter-spacing: 2px; color: var(--gold); margin-bottom: 8px; font-style: normal; }
+  .vision { padding-top: 32px; }
+  .feature-card { display: flex; gap: 14px; background: var(--card); border: 1px solid #2a2a2a; border-radius: 14px; padding: 18px; margin-bottom: 12px; align-items: flex-start; }
+  .feature-icon { font-size: 30px; flex-shrink: 0; }
+  .feature-title { font-weight: 700; font-size: 14px; color: var(--gold); margin-bottom: 6px; }
+  .feature-desc { font-size: 12px; color: #999; line-height: 1.7; }
+  .voice-box { background: rgba(201,168,76,0.08); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin: 20px 0 28px; font-size: 13px; line-height: 1.8; text-align: center; }
+  .cta { padding-top: 32px; text-align: center; }
+  .cta-icon { font-size: 56px; margin-bottom: 16px; display: block; }
+  h3 { font-family: 'Shippori Mincho', serif; font-size: 24px; line-height: 1.5; margin-bottom: 10px; background: linear-gradient(135deg, var(--gold), #f0e6cc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .cta-sub { font-size: 13px; color: var(--muted); margin-bottom: 28px; line-height: 1.8; }
+  .limited-alert { background: linear-gradient(135deg, rgba(232,93,117,0.15), rgba(232,93,117,0.05)); border: 1px solid rgba(232,93,117,0.5); border-radius: 14px; padding: 14px; margin-bottom: 20px; text-align: center; animation: blink 2.5s ease-in-out infinite; }
+  @keyframes blink { 0%, 100% { box-shadow: 0 0 0 rgba(232,93,117,0); } 50% { box-shadow: 0 0 20px rgba(232,93,117,0.4); } }
+  .limited-label { font-size: 10px; letter-spacing: 3px; color: #ff7a8e; margin-bottom: 6px; font-weight: 700; }
+  .limited-text { font-size: 14px; font-weight: 900; color: #ffeef0; }
+  .limited-count { font-size: 22px; color: #ff7a8e; font-weight: 900; margin: 0 4px; }
+  .price-row { display: flex; justify-content: space-between; padding: 10px 16px; border-radius: 8px; margin-bottom: 6px; font-size: 13px; }
+  .price-row.highlight { background: rgba(201,168,76,0.1); border: 1px solid var(--border); font-size: 15px; font-weight: 700; color: var(--gold); }
+  .price-row.striked { color: #444; text-decoration: line-through; }
+  .include-list { margin: 24px 0; text-align: left; }
+  .include-item { display: flex; align-items: center; gap: 10px; padding: 9px 0; font-size: 13px; border-bottom: 1px solid #1e1e1e; }
+  .include-item:last-child { border-bottom: none; }
+  .footer-note { font-size: 11px; color: #3a3a3a; margin-top: 20px; line-height: 1.8; }
+  #progress-counter { font-size: 11px; color: #555; }
+  .inline-offer { background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.04)); border: 2px solid var(--gold); border-radius: 20px; padding: 22px 18px; margin: 24px 0; text-align: center; position: relative; overflow: hidden; }
+  .offer-badge { display: inline-block; background: linear-gradient(135deg, #ff7a8e, #E85D75); color: #fff; font-size: 10px; letter-spacing: 2px; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; font-weight: 700; }
+  .offer-title { font-family: 'Shippori Mincho', serif; font-size: 18px; line-height: 1.5; margin-bottom: 10px; color: var(--gold); }
+  .offer-desc { font-size: 12px; color: #aaa; line-height: 1.7; margin-bottom: 14px; }
+  .offer-price-row { display: flex; justify-content: center; align-items: baseline; gap: 12px; margin-bottom: 14px; }
+  .offer-old-price { font-size: 13px; color: #555; text-decoration: line-through; }
+  .offer-new-price { font-size: 26px; font-weight: 900; color: var(--gold); letter-spacing: 1px; }
+  .offer-new-price small { font-size: 12px; font-weight: 400; }
+</style>
+</head>
+<body>
+<div class="topbar"><span class="topbar-label">VISION BOARD</span><span id="progress-counter"></span></div>
+<div class="wrap">
+  <div id="page-cover" class="page active cover">
+    <span class="cover-icon">🌟</span>
+    <span class="badge">無料プレゼント</span>
+    <h1>あなたの夢を<br>見つける診断</h1>
+    <p class="sub">5つの質問に答えるだけで<br>あなたのタイプと<br>夢への最短ルートがわかる</p>
+    <div class="checklist">
+      <div class="check-item"><span class="check-icon">✓</span>所要時間：約3分</div>
+      <div class="check-item"><span class="check-icon">✓</span>あなたの夢タイプがわかる</div>
+      <div class="check-item"><span class="check-icon">✓</span>夢を叶える処方箋つき</div>
+      <div class="check-item"><span class="check-icon">✓</span>ビジョンボード活用法</div>
+    </div>
+    <button type="button" class="btn-gold" data-goto="intro">診断をスタートする →</button>
+    <p class="btn-note">完全無料・登録不要</p>
+  </div>
+  <div id="page-intro" class="page intro">
+    <p class="section-label">はじめに</p>
+    <h2>「なんとなく毎日を<br>過ごしていませんか？」</h2>
+    <div class="pain-card">💭 やりたいことはある気がするけど、何から始めればいいかわからない…</div>
+    <div class="pain-card">💭 目標を立てても続かない、いつも三日坊主になってしまう…</div>
+    <div class="pain-card">💭 このままでいいのか、でも何をすればいいのかわからない…</div>
+    <div class="insight-box">それは<span class="gold-text">「自分の夢が見えていない」</span>から。<br>夢が明確になれば、<br>人は自然に動き出せます。</div>
+    <button type="button" class="btn-gold" data-goto="quiz">自分の夢を見つける →</button>
+  </div>
+  <div id="page-quiz" class="page quiz">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:20%"></div></div>
+    <p class="q-label" id="q-label">Q1. あなたの今</p>
+    <h2 class="q-text" id="q-text">今の自分に一番近いのは？</h2>
+    <div class="options" id="options"></div>
+  </div>
+  <div id="page-result" class="page result">
+    <div class="result-center">
+      <span class="result-icon" id="result-icon">🌟</span>
+      <p class="section-label">診断結果</p>
+      <p class="result-type" id="result-type" style="color:var(--gold)">ドリーマータイプ</p>
+      <p class="result-sub">あなたはこのタイプです</p>
+    </div>
+    <div class="result-desc" id="result-desc"></div>
+    <div class="prescription"><p class="rx-label">あなたへの処方箋</p><p id="result-action"></p></div>
+    <div class="hojin-msg">
+      <div class="hojin-msg-head">
+        <div class="hojin-avatar">🎤</div>
+        <div><div class="hojin-name">ほーじんより</div><div class="hojin-role">歌うカウンセラー・伴走コーチ</div></div>
+      </div>
+      <p id="hojin-message"></p>
+    </div>
+    <div class="wol-msg"><div class="wol-label">🐾 ウォル君からのメッセージ</div><p id="wol-message"></p></div>
+    <div class="inline-offer">
+      <span class="offer-badge">⏰ 限定10名様 特別価格</span>
+      <p class="offer-title">あなたの夢を<br>1枚の絵に。</p>
+      <p class="offer-desc">診断結果をもとに、ほーじんが<br>あなたの夢を「見える化」します。<br>60分のオンラインセッション。</p>
+      <div class="offer-price-row"><span class="offer-old-price">¥5,000</span><span class="offer-new-price">¥3,000<small>（税込）</small></span></div>
+      <a href="https://lin.ee/YOUR_LINE_ID" class="btn-line line-btn" target="_blank" rel="noopener"><span>💬</span><span>LINEで申し込む</span></a>
+      <p class="btn-note">※残り枠は先着順です</p>
+    </div>
+    <button type="button" class="btn-gold" data-goto="vision">ビジョンボードって何？ →</button>
+  </div>
+  <div id="page-vision" class="page vision">
+    <p class="section-label">ビジョンボードとは</p>
+    <h2>夢を「見える化」する<br>最強のツール</h2>
+    <div class="feature-card"><span class="feature-icon">🎯</span><div><p class="feature-title">夢・目標を1枚に集約</p><p class="feature-desc">バラバラだった夢・価値観・行動計画が1枚に整理される。見るたびにモチベーションが上がる。</p></div></div>
+    <div class="feature-card"><span class="feature-icon">🧠</span><div><p class="feature-title">脳が「現実」として認識する</p><p class="feature-desc">視覚化された夢は脳が実現済みとして捉え、自然に行動が変わる。トップアスリートも使うメソッド。</p></div></div>
+    <div class="feature-card"><span class="feature-icon">🚀</span><div><p class="feature-title">行動が自然に変わる</p><p class="feature-desc">「何をすればいいかわからない」がなくなり、毎朝見るだけで自然に動き出せるようになる。</p></div></div>
+    <div class="voice-box">実際に作った方から<br><span class="gold-text">「人生が変わった！」</span><br>という声が続出しています。</div>
+    <button type="button" class="btn-gold" data-goto="cta">ビジョンボードを作りたい →</button>
+  </div>
+  <div id="page-cta" class="page cta">
+    <span class="cta-icon">🎉</span>
+    <span class="badge">特別オファー</span>
+    <h3>あなた専用の<br>ビジョンボードを<br>一緒に作りませんか？</h3>
+    <p class="cta-sub">診断結果をもとに、あなたの夢・価値観・<br>行動計画を1枚に可視化します。</p>
+    <div class="limited-alert"><p class="limited-label">⏰ 数量限定オファー</p><p class="limited-text">先着<span class="limited-count">10</span>名様 特別価格</p></div>
+    <div class="price-row striked"><span>通常価格</span><span>¥5,000</span></div>
+    <div class="price-row highlight"><span>今だけ特別価格</span><span>¥3,000</span></div>
+    <div class="include-list">
+      <div class="include-item"><span class="check-icon">✓</span>60分のオンラインセッション</div>
+      <div class="include-item"><span class="check-icon">✓</span>あなただけの夢の見える化</div>
+      <div class="include-item"><span class="check-icon">✓</span>夢タイプ別の処方箋付き</div>
+      <div class="include-item"><span class="check-icon">✓</span>完成後のフォローアップ付き</div>
+      <div class="include-item"><span class="check-icon">✓</span>🎤 ほーじんから応援の一言</div>
+    </div>
+    <a href="https://lin.ee/YOUR_LINE_ID" class="btn-line line-btn" target="_blank" rel="noopener" style="margin-bottom:10px;"><span>💬</span><span>LINEで申し込む</span></a>
+    <button type="button" class="btn-ghost" data-goto="cover">最初からやり直す</button>
+    <p class="footer-note">「立ち止まっているあなたの人生を、<br>もう一度前に動かす」<br>— 歌うカウンセラー ほーじん 🎤🐾</p>
+  </div>
+</div>
+<script>
+(function() {
+  'use strict';
+  var LINE_URL = "https://lin.ee/YOUR_LINE_ID";
+  var questions = [
+    { category: "あなたの今", text: "今の自分に一番近いのは？", options: [{ label: "毎日なんとなく過ごしている", value: "a", emoji: "😶" }, { label: "やりたいことはあるけど動けていない", value: "b", emoji: "🤔" }, { label: "目標はあるけど続かない", value: "c", emoji: "😅" }, { label: "何から始めればいいかわからない", value: "d", emoji: "😵" }] },
+    { category: "あなたの夢", text: "本当はどんな人生を送りたい？", options: [{ label: "時間とお金の自由が欲しい", value: "a", emoji: "✨" }, { label: "家族・大切な人と豊かに過ごしたい", value: "b", emoji: "🏡" }, { label: "自分らしく・好きなことで生きたい", value: "c", emoji: "🌟" }, { label: "社会に貢献・影響力を持ちたい", value: "d", emoji: "🔥" }] },
+    { category: "あなたのブロック", text: "夢に向かえない一番の理由は？", options: [{ label: "自分に自信がない", value: "a", emoji: "💭" }, { label: "何をすればいいかわからない", value: "b", emoji: "🗺️" }, { label: "時間・お金がない気がする", value: "c", emoji: "⏰" }, { label: "失敗が怖い・周りの目が気になる", value: "d", emoji: "😨" }] },
+    { category: "あなたの強み", text: "あなたが得意なこと・好きなことは？", options: [{ label: "人と話す・聴く・つながる", value: "a", emoji: "🤝" }, { label: "考える・分析する・計画する", value: "b", emoji: "🧠" }, { label: "創る・表現する・発信する", value: "c", emoji: "🎨" }, { label: "動く・行動する・継続する", value: "d", emoji: "⚡" }] },
+    { category: "あなたの一歩", text: "今すぐできるなら何をしたい？", options: [{ label: "自分の夢を言葉にしてみたい", value: "a", emoji: "📝" }, { label: "5年後・10年後の自分を描いてみたい", value: "b", emoji: "🔮" }, { label: "具体的な行動計画を立てたい", value: "c", emoji: "📋" }, { label: "誰かに話を聴いてもらいたい", value: "d", emoji: "💬" }] }
+  ];
+  var results = {
+    dreamer: { type: "ドリーマータイプ", emoji: "🌟", color: "#C9A84C", desc: "夢を描く力は誰よりも強い！ただ、夢が大きすぎて「どこから始めればいいか」がわからなくなりがち。あなたに必要なのは、夢を可視化して小さな一歩に変換することです。", action: "💊 あなたの夢を1枚の絵に変える「ビジョンボード」が最強の武器になります。夢の全体像を可視化することで、次の一歩が自然に見えてきます。", hojin: "実は僕も40歳でパニック症になって、夢を諦めかけた時期がありました。でも黒猫のウォル君と過ごす中で気づいたんです。「夢は大きさじゃなく、見える化できるかが全て」だって。あなたの大きな夢、一緒に1枚の絵にしてみませんか？🤗", wol: "「夢が大きいのは悪いことじゃないニャ。一歩ずつ見える形にしていけば、必ず叶うニャ🐾」" },
+    planner: { type: "プランナータイプ", emoji: "🧠", color: "#4A90D9", desc: "分析力・計画力が高く、一度動き出したら誰よりも着実に進める。でも「完璧な計画」を作ろうとしすぎて、スタートが遅れがち。まず大枠から動くことが大切。", action: "💊 まず大枠の夢を可視化してから逆算する「ビジョンボード式計画法」があなたにピッタリ。完璧より前進を。", hojin: "僕も家具屋時代、売れる人をストーカーのように観察してメモしたタイプなので、よくわかります（笑）。でも結局、最後に効いたのは「完璧な準備」じゃなく「動きながら整える勇気」でした。あなたの綿密さに「見える化」が加わったら、最強ですよ✨", wol: "「考えすぎないで、まず一歩動いてみるニャ。計画は歩きながら直せるニャ🐾」" },
+    connector: { type: "コネクタータイプ", emoji: "🤝", color: "#E85D75", desc: "人を繋ぐ力・共感力が高く、周りを幸せにする天才。でも「自分のことは後回し」になりがち。あなた自身の夢も大切にしていい。", action: "💊 「自分の夢」を明確にすることで、周りを巻き込む力が10倍になります。まず自分の夢を堂々と宣言しましょう。", hojin: "「人の喜び我が喜び」って素敵な言葉があります（実は僕の友人の座右の銘です）。でもね、まず自分が満たされてないと、人を本気で応援できないんです。あなた自身の夢、聴かせてくれませんか？僕が伴走します🤗", wol: "「自分のこと、もっと大事にしていいニャ。あなたが笑顔だと、みんなも笑顔になるニャ🐾」" },
+    action: { type: "アクションタイプ", emoji: "⚡", color: "#F4A342", desc: "行動力・実行力は誰にも負けない！でも方向性が定まっていないと、エネルギーが空回りすることも。正しい方向に全力を出せたら最強。", action: "💊 明確なビジョンさえ決まれば、あなたは誰よりも速く夢を叶えられます。まず北極星となる夢を決めましょう。", hojin: "あなたの行動力、本当にすごい。でも僕、リフォーム会社時代に「とにかく動け」で2年燃え尽きた経験があるんです。方向性が決まれば、あなたのエネルギーは10倍化します。一緒に「北極星」を決めましょう🌟", wol: "「走り出す前に、行き先を決めようニャ。そうすれば最短距離で夢に着くニャ🐾」" }
+  };
+  var currentQ = 0, answers = [];
+  function getResult() {
+    var count = { a: 0, b: 0, c: 0, d: 0 };
+    for (var i = 0; i < answers.length; i++) { var a = answers[i]; if (count[a] !== undefined) count[a]++; }
+    var max = -1, top = "b", keys = ["a", "b", "c", "d"];
+    for (var j = 0; j < keys.length; j++) { if (count[keys[j]] > max) { max = count[keys[j]]; top = keys[j]; } }
+    var map = { a: "connector", b: "dreamer", c: "planner", d: "action" };
+    return results[map[top]];
+  }
+  function renderQuestion() {
+    var q = questions[currentQ];
+    var qLabel = document.getElementById('q-label'), qText = document.getElementById('q-text');
+    var pFill = document.getElementById('progress-fill'), pCount = document.getElementById('progress-counter');
+    var opts = document.getElementById('options');
+    if (!qLabel || !opts) return;
+    qLabel.textContent = "Q" + (currentQ + 1) + ". " + q.category;
+    qText.textContent = q.text;
+    pFill.style.width = (((currentQ + 1) / questions.length) * 100) + "%";
+    pCount.textContent = (currentQ + 1) + " / " + questions.length;
+    opts.innerHTML = '';
+    for (var k = 0; k < q.options.length; k++) {
+      (function(opt) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'opt-btn';
+        btn.innerHTML = '<span class="opt-emoji">' + opt.emoji + '</span><span>' + opt.label + '</span>';
+        btn.addEventListener('click', function() { handleAnswer(opt.value); });
+        opts.appendChild(btn);
+      })(q.options[k]);
+    }
+  }
+  function handleAnswer(value) {
+    answers.push(value);
+    if (currentQ < questions.length - 1) { currentQ++; renderQuestion(); }
+    else {
+      var r = getResult();
+      document.getElementById('result-icon').textContent = r.emoji;
+      document.getElementById('result-type').textContent = r.type;
+      document.getElementById('result-type').style.color = r.color;
+      document.getElementById('result-desc').textContent = r.desc;
+      document.getElementById('result-desc').style.background = r.color + "11";
+      document.getElementById('result-desc').style.border = "1px solid " + r.color + "44";
+      document.getElementById('result-action').textContent = r.action;
+      document.getElementById('hojin-message').textContent = r.hojin;
+      document.getElementById('wol-message').textContent = r.wol;
+      showPage('result');
+    }
+  }
+  function showPage(pageId) {
+    var pages = document.querySelectorAll('.page');
+    for (var i = 0; i < pages.length; i++) { pages[i].classList.remove('active'); }
+    var target = document.getElementById('page-' + pageId);
+    if (target) target.classList.add('active');
+    window.scrollTo(0, 0);
+    var counter = document.getElementById('progress-counter');
+    if (pageId === 'quiz') {
+      currentQ = 0; answers = [];
+      if (counter) counter.textContent = "1 / " + questions.length;
+      renderQuestion();
+    } else { if (counter) counter.textContent = ''; }
+  }
+  function init() {
+    var navButtons = document.querySelectorAll('[data-goto]');
+    for (var i = 0; i < navButtons.length; i++) {
+      (function(btn) { btn.addEventListener('click', function(e) { e.preventDefault(); showPage(btn.getAttribute('data-goto')); }); })(navButtons[i]);
+    }
+    var lineButtons = document.querySelectorAll('.line-btn');
+    for (var j = 0; j < lineButtons.length; j++) { lineButtons[j].href = LINE_URL; }
+  }
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); }
+  else { init(); }
+})();
+</script>
+</body>
+</html>
